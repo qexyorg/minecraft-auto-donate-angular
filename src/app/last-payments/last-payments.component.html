@@ -1,0 +1,29 @@
+<div class="last-payments">
+  <div class="container">
+    <div class="last-name">Последние покупки</div>
+
+    <div class="list-loading" *ngIf="!globals.lastLoaded"><i class="fa fa-spin fa-spinner"></i></div>
+
+    <div class="list" *ngIf="globals.lastLoaded && globals.last.length">
+      <div *ngFor="let item of globals.last; index as id" class="item-id">
+
+        <div class="item-wrapper" *ngIf="globals.options.items[item.item_id]">
+          <div class="image" style="background-image: url('/assets/steve.png')"></div>
+          <div class="title">{{globals.options.items[item.item_id].title}}</div>
+          <div class="player">{{item.player}}</div>
+        </div>
+
+        <div class="item-wrapper item-none" *ngIf="!globals.options.items[item.item_id]">
+          <div class="image" style="background-image: url('/assets/steve.png')"></div>
+          <div class="title"><i class="fa fa-exclamation-triangle"></i></div>
+          <div class="player"><i class="fa fa-user-secret"></i></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="list-none" *ngIf="globals.lastLoaded && !globals.last.length">
+      Никто пока не покупал товары
+    </div>
+  </div>
+</div>
